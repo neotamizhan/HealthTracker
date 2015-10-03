@@ -8,10 +8,13 @@
  * Controller of the healthTrackerApp
  */
 angular.module('healthTrackerApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, Users) {
+
+    $scope.FetchAllUsers = function () {
+        Users.all().then(function (all_users) {
+          $scope.users = all_users;
+        })
+    }
+
+    $scope.FetchAllUsers();
   });

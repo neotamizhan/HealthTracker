@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'mongolabResourceHttp'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -32,4 +33,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  }).constant('MONGOLAB_CONFIG',{API_KEY:'aMlGO8KWJ4e8mUK3fneg1GAFyDB3823m', DB_NAME:'contest'})
+  .factory('Users', function ($mongolabResourceHttp) {
+    return $mongolabResourceHttp('users');
   });
