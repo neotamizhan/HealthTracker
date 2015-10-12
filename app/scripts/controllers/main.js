@@ -10,6 +10,8 @@
 angular.module('healthTrackerApp')
   .controller('MainCtrl', function ($scope, $modal, Users) {
 
+    $scope.signedIn = true;
+
     $scope.FetchAllUsers = function () {
         Users.all().then(function (all_users) {
           $scope.users = all_users;
@@ -57,8 +59,6 @@ angular.module('healthTrackerApp')
       return color;
     }
 
-    $scope.signedIn = false;
-
    // Here we do the authentication processing and error handling.
    // Note that authResult is a JSON object.
    $scope.processAuth = function(authResult) {
@@ -78,6 +78,11 @@ angular.module('healthTrackerApp')
            // Report error.
        }
    };
+
+   $scope.signOut = function () {
+     gapi.auth.signOut();
+     $scope.signedIn = false;
+   }
 
    $scope.processUserInfo = function(userInfo) {
 
@@ -124,6 +129,7 @@ angular.module('healthTrackerApp')
             }
         );
     }
+
 
         // Start function in this example only renders the sign in button.
     $scope.start = function() {

@@ -49,7 +49,8 @@
             </button>
 
             <a class="navbar-brand" href="#/">Health Tracker</a>
-            <span id="googleSignIn"><span id="signInButton"></span></span>
+            <div ng-show="signedIn"><span id="googleSignIn" ><span id="signInButton"></span></span></div>
+            <span id="googleSignOut"><button class="btn-danger btn btn-sm" ng-click="signOut()">Sign Out</button></span>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
