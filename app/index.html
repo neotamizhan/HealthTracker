@@ -5,6 +5,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta name="google-signin-client_id" content="503260251941-0ro1k4avns1u2hm321vh7n231urcr3mb.apps.googleusercontent.com">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -14,8 +15,22 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <!-- Don't forget to place the script that does the asynchronous loading of Google+ JavaScript API.
+                 Because it is loaded asynchronously, it might take some time to load.
+                 Place some loading notification, so user won't get confused.
+                 You can use ng-show and ng-hide to show or hide your notification and accomplish best user experience. -->
+  <script>// <![CDATA[
+                (function() {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/client:plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+
+    // ]]>
+    </script>
   </head>
   <body ng-app="healthTrackerApp">
+
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -33,15 +48,16 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">healthTracker</a>
+            <a class="navbar-brand" href="#/">Health Tracker</a>
+            <span id="googleSignIn"><span id="signInButton"></span></span>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li>
+
+              </li>
             </ul>
           </div>
         </div>
@@ -57,7 +73,6 @@
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -83,7 +98,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-sanitize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-touch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js" type="text/javascript"></script>
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -95,5 +110,9 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/user.js"></script>
         <!-- endbuild -->
+
+
+        <!-- Second script needed for accessing Google API (gapi.*) . Its usage will be described in controller. -->
+        <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 </body>
 </html>
