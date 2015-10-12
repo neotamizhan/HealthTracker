@@ -17,8 +17,16 @@ angular.module('healthTrackerApp')
     }
 
     $scope.GetBmi = function (user, entry) {
+      if (!entry) return 0;
       var height_m = user.height / 100;
       return entry.weight / (height_m * height_m);
+    }
+
+    $scope.addEntry = function (user) {
+      var weight = prompt("Enter your weight as of now");
+      var entry = {date:new Date().toISOString().slice(0, 10), weight:weight};
+      user.entries.push(entry);
+      user.$save();
     }
 
     $scope.open = function (user) {
@@ -28,7 +36,7 @@ angular.module('healthTrackerApp')
                       backdrop: true,
                       windowClass: 'modal',
                       controller: function ($scope, $modalInstance, $log, user) {
-                          $scope.entry = {date:"2015-10-12", weight:0};
+                          $scope.entry = {date:new Date().toISOString().slice(0, 10), weight:0};
                           $scope.user = user;
                           $scope.submit = function () {
                               $log.log('Submiting user info.');
@@ -38,10 +46,12 @@ angular.module('healthTrackerApp')
                               $scope.user.$save();
                               $modalInstance.dismiss('cancel');
                           }
+
                           $scope.cancel = function () {
                               $modalInstance.dismiss('cancel');
                           };
                       },
+
                       resolve: {
                           user: function () {
                               return $scope.user;
