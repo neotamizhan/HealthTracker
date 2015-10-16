@@ -7,6 +7,8 @@
  * # AboutCtrl
  * Controller of the healthTrackerApp
  */
+
+
 angular.module('healthTrackerApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
